@@ -105,7 +105,7 @@ Each task explores a different aspect of embedded systems:
 
 A detailed technical report (including timing analysis, register explanations, and oscilloscope evidence) is available here:
 
-👉 [Lab Report](./report.pdf)
+👉 [Lab Report](./report%20part%201.pdf)
 
 ---
 
