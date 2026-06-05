@@ -10,28 +10,57 @@ The focus is on **low-level programming, register manipulation, timing analysis,
 In this project, I implemented multiple tasks using both **Arduino abstractions** and **direct AVR register / assembly programming**.  
 Each task explores a different aspect of embedded systems:
 
-- Performance comparison (high-level vs low-level)
+- Performance comparison between Arduino API and register-level programming
 - CPU register manipulation
 - Status register (SREG) analysis
 - EEPROM persistence
 - Interrupt-driven systems
-- Assembly control flow (RJMP, JMP, IJMP)
+- Hardware timer configuration
+- Parallel I/O control
+- Assembly control flow
+- SPI communication at register level
+- I2C / TWI communication and clock speed analysis
+- Oscilloscope-based timing verification and hardware debugging
 
 ---
 
 ## 🧠 Skills Demonstrated
 
-- Embedded Systems Programming (ATmega328P)
-- AVR Register-Level Programming (DDRB, PORTB, EICRA, TCCR1, etc.)
-- AVR Assembly (MOV, SUB, IN, INC, IJMP, RJMP, JMP)
-- Interrupt Systems (External interrupts, Timer1 CTC)
-- Timing Analysis (cycle counting, oscilloscope validation)
+- Embedded Systems Programming on ATmega328P
+- Arduino Uno Hardware Programming
+- AVR Register-Level Programming
+- AVR Assembly Programming
+- Digital I/O Configuration using `DDRB`, `DDRC`, `DDRD`, `PORTB`, `PORTC`, and `PORTD`
+- External Interrupts using `INT0`, `EICRA`, and `EIMSK`
+- Timer1 Configuration using `TCCR1A`, `TCCR1B`, `OCR1A`, and `TIMSK1`
+- Timer1 CTC Mode
 - EEPROM Memory Handling
-- Hardware Debugging using Oscilloscope
+- Status Register Analysis using `SREG`
+- SPI Communication using `SPCR`, `SPSR`, `SPDR`, `DDRB`, and `PORTB`
+- I2C / TWI Communication using `TWBR`, `TWSR`, `TWCR`, `TWDR`, and `TWAR`
+- Oscilloscope-Based Timing Analysis
+- Hardware Debugging and Signal Validation
 
 ---
 
 ## 📂 Project Structure
+
+```text
+Microprocessor-Systems/
+│
+├── task 1/
+├── task 2/
+├── task 3/
+├── task 4/
+├── task 5/
+├── task 6/
+├── task 7/
+├── task 8/
+│
+├── report part 1.pdf
+├── report part 2.pdf
+└── README.md
+```
 
 ---
 
@@ -101,11 +130,58 @@ Each task explores a different aspect of embedded systems:
 
 ---
 
+### 🔹 Task 6 – Timer-Based 7-Segment Counter
+- Controlled a single-digit **7-segment display** using register-level programming
+- Display counts from **0 to 9**
+- Updated the display every **0.5 seconds** using Timer1 CTC mode
+- Used external interrupt (INT0 on D2) to pause and resume the counter
+- Verified timing and pause/resume behavior using oscilloscope
+- Counter resumes from the same digit after being paused
+
+🎥 Demo: https://youtu.be/4C4q3dPMt78  
+📂 Code: [Task 6](./task%206)
+
+---
+
+### 🔹 Task 7 – SPI Communication Between Two Arduinos
+- Implemented register-level **SPI communication** between two Arduino Uno boards
+- One Arduino acts as Master and the other as Slave
+- Master sends decimal values every 1 second:
+  - `85`
+  - `170`
+  - `255`
+- Slave receives the values and displays them on the Serial Monitor
+- Configured SPI using registers (`SPCR`, `SPSR`, `SPDR`, `DDRB`, `PORTB`)
+- Observed SS, SCK, MOSI, and MISO signals using oscilloscope
+
+🎥 Demo: https://youtu.be/fSw1YmivDls  
+📂 Code: [Task 7](./task%207)
+
+---
+
+### 🔹 Task 8 – I2C / TWI Communication & Speed Analysis
+- Implemented two-way **I2C / TWI communication** between two Arduino Uno boards
+- Each board has a push button and LED
+- Pressing one board’s button sends a message to turn on the other board’s LED
+- Designed a simple message protocol using values:
+  - `0x00` → no button pressed / LED off
+  - `0x01` → Master button pressed
+  - `0x02` → Slave button pressed
+- Tested I2C clock speeds around **100 kHz** and **400 kHz**
+- Compared SDA and SCL waveforms using different pull-up resistors
+- Analyzed how pull-up resistance, capacitance, and wiring affect signal quality
+
+🎥 Demo: https://youtu.be/ayUupy_fTOI  
+📂 Code: [Task 8](./task%208)
+
+---
+
 ## 📄 Full Report
 
 A detailed technical report (including timing analysis, register explanations, and oscilloscope evidence) is available here:
 
-👉 [Lab Report](./report%20part%201.pdf)
+👉 [Lab Report Part 1](./report%20part%201.pdf)  
+👉 [Lab Report 2](./lab%20report%202.pdf)
 
 ---
 
@@ -113,7 +189,11 @@ A detailed technical report (including timing analysis, register explanations, a
 
 - Arduino Uno (ATmega328P)
 - Oscilloscope (SIGLENT SDS1202X-E)
-- Push buttons, onboard LED (D13)
+- Push buttons
+- Onboard LED (D13)
+- Single-digit 7-segment display
+- Breadboard and jumper wires
+- External pull-up resistors for I2C testing
 
 ---
 
