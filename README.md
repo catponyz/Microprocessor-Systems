@@ -181,7 +181,7 @@ Microprocessor-Systems/
 A detailed technical report (including timing analysis, register explanations, and oscilloscope evidence) is available here:
 
 👉 [Lab Report Part 1](./report%20part%201.pdf)  
-👉 [Lab Report 2](./lab%20report%202.pdf)
+👉 [Lab Report Part 2](./report%20part%202.pdf)
 
 ---
 
